@@ -1,6 +1,6 @@
-import { Component, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { CitiesService } from '../cities';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
@@ -8,13 +8,14 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search-bar.html',
   styleUrl: './search-bar.css'
 })
+
+// search-bar.component.ts
 export class SearchBarComponent {
+  private citiesService = inject(CitiesService);
   query = '';
-  searched = output<string>();
 
   onSearch() {
-      console.log('User is looking for ', this.query);
-      this.query = ''; // Clean after parsing
+    this.citiesService.addCity(this.query);
+    this.query = '';
   }
-
 }
