@@ -1,1 +1,9 @@
-<p>weather-city-box works!</p>
+@if (data$ | async; as data) {
+  <p>{{ data.city }}</p>
+  <p>{{ data.curr_temp }}°C</p>
+  <p>{{ data.condition_text }}</p>
+  <p>{{ data.humidity }}%</p>
+  <p>{{ data.wind }} km/h</p>
+} @else {
+  <p>Loading...</p>
+}
