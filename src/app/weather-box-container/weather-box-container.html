@@ -1,5 +1,8 @@
 <div class="weather-box-container">
     @for (city of WishedCities.cities(); track city) {
-        <app-weather-city-box [city]="city" />
+        <app-weather-city-box 
+        [city]="city"
+        (remove)="onRemove(city)"
+        />
     }
 </div>

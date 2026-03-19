@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { catchError, forkJoin, map, Observable } from 'rxjs';
+import { catchError, forkJoin, map, Observable, timeout } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
@@ -18,6 +18,7 @@ export class WeatherService {
     const url = `${this.API_URL}key=${this.API_KEY}&q=${encodeURIComponent(city)}`;
 
     return this.http.get<any>(url).pipe(
+      timeout(5000),
       map(response => this.formatWeatherData(response)),
       catchError(e => {
         console.error(`Failed to fetch weather for ${city}:`, e);

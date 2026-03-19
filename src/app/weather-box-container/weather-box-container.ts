@@ -10,4 +10,8 @@ import { WeatherCityBox } from '../weather-city-box/weather-city-box';
 })
 export class WeatherBoxContainer {
   WishedCities = inject(CitiesService); 
+
+  onRemove(city: string) {
+    this.WishedCities.deleteCity(city);
+  }
 }

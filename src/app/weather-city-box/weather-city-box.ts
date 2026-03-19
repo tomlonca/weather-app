@@ -1,8 +1,8 @@
-import { Component, Input, inject, OnInit } from '@angular/core';
+import { Component, Input, inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { WeatherService } from '../weather-service';
 import { BoxWeatherData } from '../weather-service';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { catchError, EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-weather-city-box',
@@ -12,10 +12,17 @@ import { Observable } from 'rxjs';
 })
 export class WeatherCityBox implements OnInit {
   @Input({ required: true }) city = '';
+  @Output() remove = new EventEmitter<void>();
+  
   private weatherService = inject(WeatherService);
-
   data: Observable<BoxWeatherData> | null = null;
+
   ngOnInit() {
-    this.data = this.weatherService.getWeather(this.city);
-  }
+  this.data = this.weatherService.getWeather(this.city).pipe(
+    catchError(e => {
+      this.remove.emit(); // Emit a remove signal to the parent if there is an error
+      return EMPTY;
+    })
+  );
+}
 }
