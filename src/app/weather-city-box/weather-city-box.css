@@ -30,3 +30,7 @@
     text-align: center;
     font-size: 1.5rem;
 }
+
+.box-bottom img {
+    max-width: 1.5rem;
+}

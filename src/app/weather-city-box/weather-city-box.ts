@@ -14,9 +14,8 @@ export class WeatherCityBox implements OnInit {
   @Input({ required: true }) city = '';
   private weatherService = inject(WeatherService);
 
-  data$: Observable<BoxWeatherData> | null = null;
-
+  data: Observable<BoxWeatherData> | null = null;
   ngOnInit() {
-    this.data$ = this.weatherService.getWeather(this.city);
+    this.data = this.weatherService.getWeather(this.city);
   }
 }

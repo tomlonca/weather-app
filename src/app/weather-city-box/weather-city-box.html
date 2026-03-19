@@ -1,15 +1,26 @@
 <div class="weather-city-box">
-  @if (data$ | async; as data) {
+  @if (data | async; as data) {
     <div class="box-top">
       <p>{{ data.city }}</p>
     </div>
     <div class="box-bottom">
-      <div class="temp">{{ data.curr_temp }}°C</div>
-      <div class="condition">{{ data.condition_text }}</div>
-      <div class="humidity">{{ data.humidity }}%</div>
-      <div class="wind">{{ data.wind }} km/h</div>
+      <div class="temp">
+        <img src="temperature_icon.png"/>
+        {{ data.curr_temp }}°C
+      </div>
+      <div class="condition">
+          <img src= {{data.condition_icon}}/>
+          {{data.condition_text}}
+      </div>
+      <div class="humidity">
+        <img src="humidity_icon.png"/>
+        {{ data.humidity }}%
+      </div>
+      <div class="wind">
+        <img src="windy_icon.png"/>
+        {{ data.wind }} km/h
+      </div>
     </div>
-
   } @else {
     <p>Loading...</p>
   }

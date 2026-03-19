@@ -36,6 +36,7 @@ export class WeatherService {
       city: `${data.location.name}`,
       curr_temp: Number(data.current.temp_c),
       condition_text: `${data.current.condition.text}`,
+      condition_icon: `${data.current.condition.icon}`,
       visibility:Number(data.current.vis_km),
       humidity: Number(data.current.humidity),
       wind:Number(data.current.wind_kph)
@@ -48,6 +49,7 @@ export interface BoxWeatherData {
   city: string;
   curr_temp: number;
   condition_text: string;
+  condition_icon: string;
   visibility: number;
   humidity: number;
   wind: number;
