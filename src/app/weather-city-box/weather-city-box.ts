@@ -1,6 +1,5 @@
 import { Component, Input, inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { WeatherService } from '../weather-service';
-import { BoxWeatherData } from '../weather-service';
 import { AsyncPipe } from '@angular/common';
 import { catchError, EMPTY, Observable } from 'rxjs';
 
@@ -15,7 +14,7 @@ export class WeatherCityBox implements OnInit {
   @Output() remove = new EventEmitter<void>();
   
   private weatherService = inject(WeatherService);
-  data: Observable<BoxWeatherData> | null = null;
+  data: Observable<any> | null = null;
 
   ngOnInit() {
   this.data = this.weatherService.getWeather(this.city).pipe(

@@ -4,3 +4,17 @@
     height: auto;
     flex-direction: column;
 }
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;;
+}
+
+#child1 {
+    flex: 7;
+}
+
+#child2 {
+    flex: 3;
+}

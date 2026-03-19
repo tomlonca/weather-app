@@ -9,49 +9,20 @@ export class WeatherService {
   private API_URL = environment.API_URL;
   private API_KEY = environment.API_KEY;
   
-  getCities(cities: string[]): Observable<BoxWeatherData[]> {
+  getCities(cities: string[]) {
     const requests = cities.map(city => this.getWeather(city));
     return forkJoin(requests);
   }
 
-  getWeather(city: string): Observable<BoxWeatherData> {
+  getWeather(city: string) {
     const url = `${this.API_URL}key=${this.API_KEY}&q=${encodeURIComponent(city)}`;
 
     return this.http.get<any>(url).pipe(
       timeout(5000),
-      map(response => this.formatWeatherData(response)),
       catchError(e => {
         console.error(`Failed to fetch weather for ${city}:`, e);
         throw e;
       })
     );
   }
-
-  /**
-   * @param data response from Weather API
-   * 
-   * @returns Formated data for each CityBox. some fields are number in order to calculate a unit conversion.
-   */
-  formatWeatherData(data : any) : BoxWeatherData {
-    return {
-      city: `${data.location.name}`,
-      curr_temp: Number(data.current.temp_c),
-      condition_text: `${data.current.condition.text}`,
-      condition_icon: `${data.current.condition.icon}`,
-      visibility:Number(data.current.vis_km),
-      humidity: Number(data.current.humidity),
-      wind:Number(data.current.wind_kph)
-    };
-}
-
-}
-
-export interface BoxWeatherData {
-  city: string;
-  curr_temp: number;
-  condition_text: string;
-  condition_icon: string;
-  visibility: number;
-  humidity: number;
-  wind: number;
 }

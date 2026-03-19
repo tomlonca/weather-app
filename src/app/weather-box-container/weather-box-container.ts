@@ -14,4 +14,7 @@ export class WeatherBoxContainer {
   onRemove(city: string) {
     this.WishedCities.deleteCity(city);
   }
+
+  
+
 }

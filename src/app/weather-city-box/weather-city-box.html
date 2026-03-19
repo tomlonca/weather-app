@@ -1,24 +1,65 @@
 <div class="weather-city-box">
   @if (data | async; as data) {
     <div class="box-top">
-      <p>{{ data.city }}</p>
+      <p>{{ data.location.name }}</p>
+      <span class="box-subtitle">{{ data.location.region }}, {{ data.location.country }}</span>
     </div>
     <div class="box-bottom">
       <div class="temp">
         <img src="temperature_icon.png"/>
-        {{ data.curr_temp }}°C
+        {{ data.current.temp_c }}°C
       </div>
       <div class="condition">
-          <img src= {{data.condition_icon}}/>
-          {{data.condition_text}}
+        <img src="{{ data.current.condition.icon }}"/>
+        {{ data.current.condition.text }}
       </div>
       <div class="humidity">
         <img src="humidity_icon.png"/>
-        {{ data.humidity }}%
+        {{ data.current.humidity }}%
       </div>
       <div class="wind">
         <img src="windy_icon.png"/>
-        {{ data.wind }} km/h
+        {{ data.current.wind_kph }} km/h
+      </div>
+
+      <!-- Expanded details (hidden by default) -->
+      <div class="expanded-details">
+        <div class="detail-item">
+          <span class="detail-label">Feels like</span>
+          <span>{{ data.current.feelslike_c }}°C</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Wind dir.</span>
+          <span>{{ data.current.wind_dir }} ({{ data.current.wind_degree }}°)</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Gusts</span>
+          <span>{{ data.current.gust_kph }} km/h</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Pressure</span>
+          <span>{{ data.current.pressure_mb }} mb</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Visibility</span>
+          <span>{{ data.current.vis_km }} km</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Cloud cover</span>
+          <span>{{ data.current.cloud }}%</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Precipitation</span>
+          <span>{{ data.current.precip_mm }} mm</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">UV index</span>
+          <span>{{ data.current.uv }}</span>
+        </div>
+        <div class="detail-item detail-full">
+          <span class="detail-label">Local time</span>
+          <span>{{ data.location.localtime }}</span>
+        </div>
       </div>
     </div>
   } @else {

@@ -6,6 +6,15 @@
     border: 0.15rem solid black;
     border-radius: 1rem;
     margin: 1.5rem;
+    transition:  0.3s ease, 0.3s ease; /* Smooth size transition */
+    cursor: default;
+}
+
+.weather-city-box:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.18);
+    z-index: 10;
+    position: relative;
 }
 
 .box-top {
@@ -17,12 +26,20 @@
 }
 
 .box-top p {
-    margin : 1rem;
+    margin: 1rem 1rem 0.25rem;
+}
+
+.box-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.65;
+    margin-bottom: 0.75rem;
 }
 
 .box-bottom {
     flex: 7;
-    width: 100%;    
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
@@ -35,45 +52,71 @@
     max-width: 1.5rem;
 }
 
+/* Expanded details — hidden by default */
+.expanded-details {
+    grid-column: 1 / -1; /* spans full width */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
+
+    /* Collapsed state */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.4s ease, 0.35s ease, 0.3s ease;
+    margin-top: 0;
+}
+
+.weather-city-box:hover .expanded-details {
+    max-height: 300px; /* large enough to fit all content */
+    opacity: 1;
+    margin-top: 0.5rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.12);
+    padding-top: 0.4rem;
+}
+
+.detail-item.detail-full {
+    grid-column: 1 / -1;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.55;
+    margin-bottom: 0.15rem;
+}
+
+/* Replace these in your CSS */
+
 .loader {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: block;
-  margin:15px auto;
-  position: relative;
-  color: #FFF;
-  left: -100px;
-  box-sizing: border-box;
-  animation: shadowRolling 2s linear infinite;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    display: block;
+    margin: 0.9375rem auto;
+    position: relative;
+    color: #FFF;
+    left: -6.25rem;
+    box-sizing: border-box;
+    animation: 2s linear infinite;
 }
 
 @keyframes shadowRolling {
-  0% {
-    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
-  }
-  12% {
-    box-shadow: 100px 0 white, 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
-  }
-  25% {
-    box-shadow: 110px 0 white, 100px 0 white, 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
-  }
-  36% {
-    box-shadow: 120px 0 white, 110px 0 white, 100px 0 white, 0px 0 rgba(255, 255, 255, 0);
-  }
-  50% {
-    box-shadow: 130px 0 white, 120px 0 white, 110px 0 white, 100px 0 white;
-  }
-  62% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 white, 120px 0 white, 110px 0 white;
-  }
-  75% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 white, 120px 0 white;
-  }
-  87% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 white;
-  }
-  100% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
-  }
+    0%   { box-shadow: 0 0 rgba(255,255,255,0), 0 0 rgba(255,255,255,0), 0 0 rgba(255,255,255,0), 0 0 rgba(255,255,255,0); }
+    12%  { box-shadow: 6.25rem 0 white, 0 0 rgba(255,255,255,0), 0 0 rgba(255,255,255,0), 0 0 rgba(255,255,255,0); }
+    25%  { box-shadow: 6.875rem 0 white, 6.25rem 0 white, 0 0 rgba(255,255,255,0), 0 0 rgba(255,255,255,0); }
+    36%  { box-shadow: 7.5rem 0 white, 6.875rem 0 white, 6.25rem 0 white, 0 0 rgba(255,255,255,0); }
+    50%  { box-shadow: 8.125rem 0 white, 7.5rem 0 white, 6.875rem 0 white, 6.25rem 0 white; }
+    62%  { box-shadow: 12.5rem 0 rgba(255,255,255,0), 8.125rem 0 white, 7.5rem 0 white, 6.875rem 0 white; }
+    75%  { box-shadow: 12.5rem 0 rgba(255,255,255,0), 12.5rem 0 rgba(255,255,255,0), 8.125rem 0 white, 7.5rem 0 white; }
+    87%  { box-shadow: 12.5rem 0 rgba(255,255,255,0), 12.5rem 0 rgba(255,255,255,0), 12.5rem 0 rgba(255,255,255,0), 8.125rem 0 white; }
+    100% { box-shadow: 12.5rem 0 rgba(255,255,255,0), 12.5rem 0 rgba(255,255,255,0), 12.5rem 0 rgba(255,255,255,0), 12.5rem 0 rgba(255,255,255,0); }
 }
