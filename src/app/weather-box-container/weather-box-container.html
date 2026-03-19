@@ -1,9 +1,5 @@
-<div class="content">
-    
-    <p>weather-box-container works!</p>
-
+<div class="weather-box-container">
     @for (city of WishedCities.cities(); track city) {
         <app-weather-city-box [city]="city" />
     }
-
 </div>

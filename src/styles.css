@@ -1,14 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-:host {
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
+  :root {
+  /* backgrounds */
+  --bg-base:        oklch(96% 0.012 240);
+  --bg-surface:     oklch(99% 0.008 240);
+  --bg-overlay:     oklch(92% 0.018 240);
 
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
-  }
+  /* sky states */
+  --sky-dawn:       oklch(78% 0.06 55);
+  --sky-day:        oklch(68% 0.09 230);
+  --sky-overcast:   oklch(72% 0.025 240);
+  --sky-night:      oklch(28% 0.04 270);
+  --sky-storm:      oklch(45% 0.035 255);
+
+  /* accents */
+  --accent-sun:     oklch(80% 0.1 80);
+  --accent-rain:    oklch(58% 0.07 225);
+  --accent-snow:    oklch(88% 0.03 215);
+  --accent-wind:    oklch(70% 0.05 200);
+
+  /* text */
+  --text-primary:   oklch(25% 0.02 250);
+  --text-secondary: oklch(50% 0.025 245);
+  --text-muted:     oklch(68% 0.02 245);
+  --text-on-dark:   oklch(94% 0.015 240);
+}
+
+body {
+    background-color: var(--bg-base);
+}

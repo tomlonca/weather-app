@@ -1,9 +1,16 @@
-@if (data$ | async; as data) {
-  <p>{{ data.city }}</p>
-  <p>{{ data.curr_temp }}°C</p>
-  <p>{{ data.condition_text }}</p>
-  <p>{{ data.humidity }}%</p>
-  <p>{{ data.wind }} km/h</p>
-} @else {
-  <p>Loading...</p>
-}
+<div class="weather-city-box">
+  @if (data$ | async; as data) {
+    <div class="box-top">
+      <p>{{ data.city }}</p>
+    </div>
+    <div class="box-bottom">
+      <div class="temp">{{ data.curr_temp }}°C</div>
+      <div class="condition">{{ data.condition_text }}</div>
+      <div class="humidity">{{ data.humidity }}%</div>
+      <div class="wind">{{ data.wind }} km/h</div>
+    </div>
+
+  } @else {
+    <p>Loading...</p>
+  }
+</div>

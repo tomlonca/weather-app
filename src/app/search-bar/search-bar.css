@@ -1,0 +1,32 @@
+.search-bar-div {
+    display: flex;
+    direction: row;
+    justify-self: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#search-bar {
+    display: flex;
+    width: 70%;
+    height: 2rem;
+    border-radius: 4rem;
+    border-color: black;
+    border-width: 0.3rem;
+}
+
+#search-bar::placeholder {
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+#search-bar::content {
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+#search-button {
+    display: flex;
+    visibility: hidden;
+}
